@@ -6,6 +6,8 @@
             <!--<img src="assets/img/clouds.png">-->
         <!--</div>-->
 
+        <div class="initial-message">You can now tell me your <span style="color: #0190C8">commands...</span></div>
+
         <div class="logo-container">
             <h1 id="title-name">team<span class="two-letter-logo" >up</span></h1>
         </div>
@@ -36,6 +38,59 @@
                 <div class='leftleg'></div>
                 <div class='rightleg'></div>
                 <div class='torso'><div class="circlepart"></div></div>
+            </div>
+        </div>
+
+
+
+        <div class="users-box">
+            <div class="row">
+                <div class="col-md-2" *ngFor="let user1 of users1">
+                    <div class="ui card">
+                        <div class="image">
+                            <img src="http://semantic-ui.com/images/avatar2/large/matthew.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">{{user1.first_name}} {{user1.last_name}}</a>
+                            <div class="meta">
+                                <span class="date">{{user1.gender}}</span>
+                            </div>
+                            <div class="description">
+                                {{user1.email}}
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="user icon"></i>
+                                need team
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2" *ngFor="let user2 of users2">
+                    <div class="ui card">
+                        <div class="image">
+                            <img src="http://semantic-ui.com/images/avatar2/large/matthew.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">{{user2.first_name}} {{user2.last_name}}</a>
+                            <div class="meta">
+                                <span class="date">{{user2.gender}}</span>
+                            </div>
+                            <div class="description">
+                                {{user2.email}}
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="user icon"></i>
+                                need team
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

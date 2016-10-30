@@ -15,6 +15,7 @@ let client = new craigslist.Client({
 let listStorage;
 let detailStorage;
 
+
 craiglistRouter.post("/search", function (request: Request, response: Response, next: NextFunction) {
 
 

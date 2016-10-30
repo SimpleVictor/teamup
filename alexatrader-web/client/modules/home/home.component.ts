@@ -23,6 +23,9 @@ export class HomeComponent implements AfterViewInit{
 
     zone;
 
+    users1 =[];
+    users2 =[];
+
     constructor(public firebase_service: FirebaseService) {
         var config = {
             apiKey: CONFIGS.myConfigs.apiKey,
@@ -57,7 +60,39 @@ export class HomeComponent implements AfterViewInit{
     }
 
     ngAfterViewInit(){
+        let myData = JSON.parse(myJSON);
+        console.log(myData);
 
+        let page1 = [];
+        let page2 = [];
+        let page3 = [];
+
+
+        for(let i = 0; i < myData.length; i++){
+            if(i <= 9){
+                page1.push(myData[i]);
+            }else if(i >= 10 && i <= 19){
+                page2.push(myData[i]);
+            }else{
+                page3.push(myData[i]);
+            }
+        }
+
+        for(let i = 0; i < page1.length; i++){
+            if(i <= 4){
+                this.users1.push(page1[i]);
+            }else{
+                this.users2.push(page2[i]);
+            }
+        }
+
+        console.log(this.users1);
+        console.log(this.users2);
+
+
+        // var half_length = Math.ceil(page1.length / 2);
+        // var leftSide = page1.splice(0,half_length);
+        // console.log(leftSide);
 
     }
 
@@ -72,28 +107,64 @@ export class HomeComponent implements AfterViewInit{
         );
     }
 
-    SetUpMainPage(){
-        console.log("Yesh");
+    SetUpMainPage(message, robot){
+
+
+        let robot_container = $('.robot-container');
+
+        console.log("new one2");
+
+        //do animations on robot
+        TweenMax.to(robot_container, 2, {rotation: 720, scale: 0.4 , left: '39%', top: '92%',ease:Circ.easeOut});
+
+        //get rid of message
+        TweenMax.to(message, 1, {left: '100%',opacity: 0, ease:Circ.easeOut});
+
+        //get rid of background
+        // let background = $(".login-container");
+        // console.log(background);
+
+        let background = $(".login-container");
+        background.css('background', 'none');
+
+        //get rid of clouds
+        let clouds = $('.opacityfade')[0];
+        TweenMax.to(clouds, 2, {scale: 0, ease:Circ.easeOut});
+
+        //Bring up the Shadoq
+        let black_container = $(".black-container");
+        TweenMax.to(black_container, 1, {height: '100%' , background: 'rgba(0,0,0,0.9)', ease:Circ.easeOut});
+
+        let initMessage = $('.initial-message')[0];
+
+        console.log("###########");
+        console.log(initMessage);
+
+        setTimeout(() => {
+            TweenMax.to(initMessage, 1, {opacity: 1 , ease:Circ.easeOut});
+        }, 1500);
+
+
+
     }
 
     SetupNumber(skill){
         console.log(`Sucessfully received from ${skill}`);
 
 
-        let MessageComplete = (message, callback) => {
+        let MessageComplete = (message, callback, robot) => {
             connected_message[0].innerHTML = `You are now <span style='color: #46C92D'>connected</span>`;
             TweenMax.to(message, 1, {opacity: 1, left: '40%', ease:Circ.easeOut});
             setTimeout(() => {
-                callback();
+                callback(message, robot);
             }, 2000);
         };
 
-        let robot_circle = $('.torso:before');
-        console.log(robot_circle);
+        let robot_circle = $('.circlepart')[0];
 
         let connected_message = $('.login-message1');
 
-        TweenMax.to(connected_message, 1, {opacity: 0, ease:Circ.easeOut, onComplete: MessageComplete, onCompleteParams:[connected_message, this.SetUpMainPage]});
+        TweenMax.to(connected_message, 1, {opacity: 0, ease:Circ.easeOut, onComplete: MessageComplete, onCompleteParams:[connected_message, this.SetUpMainPage, robot_circle]});
 
 
         this.refreshSkill(skill);
@@ -107,6 +178,10 @@ export class HomeComponent implements AfterViewInit{
 
     FindWhoNeedsTeam(skill){
         console.log(`Sucessfully received from ${skill}`);
+
+
+
+
         this.refreshSkill(skill);
     }
 
