@@ -173,6 +173,14 @@ export class HomeComponent implements AfterViewInit{
 
         TweenMax.to(connected_message, 1, {opacity: 0, ease:Circ.easeOut, onComplete: MessageComplete, onCompleteParams:[connected_message, this.SetUpMainPage, robot_circle]});
 
+        let commands = $("#commands");
+        TweenMax.to(commands , 1, {opacity: 1, ease:Circ.easeIn , delay: 3});
+        TweenMax.to(commands, 1, {left: '2px',repeat:'infinite', yoyo:true ,ease:Circ.easeIn});
+
+        let hand = $("#handIcon");
+        TweenMax.to(hand, 1, {opacity: 1, ease:Circ.easeIn, delay:3});
+        TweenMax.to(hand, 1, {left: '2px',repeat:'infinite', yoyo:true ,ease:Circ.easeIn});
+
 
         this.refreshSkill(skill);
     }
@@ -192,6 +200,7 @@ export class HomeComponent implements AfterViewInit{
 
         let user_profile = $(".users-box")[0];
         TweenMax.to(user_profile, 1, {opacity: 1, ease:Circ.easeOut});
+
 
 
         this.refreshSkill(skill);

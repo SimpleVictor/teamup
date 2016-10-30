@@ -16,6 +16,15 @@
         <h1 class="login-message1">"Alexa, tell Team-Up to log me in as <span style="color: #0190C8">your ID #</span> "</h1>
 
 
+        <button class="ui circular facebook icon button" (click)="HelpButtonClicked()" id="help-button" style="font-family: Icon !important;opacity: 0;position: absolute; border-radius: 100%; z-index: 4;font-size: 35px;bottom: 20px; left: 20px; background-color: #0190C8">
+            <i class="list icon" style="top: 17px;right:14px"></i>
+        </button>
+
+        <img id="handIcon" src="img/tap.png" class="tap-img" style="position: absolute;    width: 3%;
+    transform: scaleX(-1) rotate(90deg);opacity: 0;    bottom: 3%;
+    left: 7%;">
+        <p id="commands" style="color:#0190C8; position: absolute; opacity: 0;bottom: 35px; left: 10%">Commands</p>
+
 
 
         <div class="opacityfade"><div class="clouds"></div></div>
@@ -96,6 +105,27 @@
             <img class="individual-img" src="{{individualUser.picture}}">
             <h2 class="individual-name">{{individualUser.first_name}} {{individualUser.last_name}}</h2>
             <h2 class="individual-email">{{individualUser.email}}</h2>
+            <h2 class="team-description">Team is not full yet</h2>
+            <div class="ui middle aligned divided list">
+                <div class="item">
+                    <div class="right floated content">
+                        Lena
+                    </div>
+                    <img class="ui avatar image" src="http://semantic-ui.com/images/avatar2/large/kristy.png">
+                </div>
+                <div class="item">
+                    <div class="right floated content">
+                        Lindsay
+                    </div>
+                    <img class="ui avatar image" src="http://semantic-ui.com/images/avatar2/large/kristy.png">
+                </div>
+                <div class="item">
+                    <div class="right floated content">
+                        Mark
+                    </div>
+                    <img class="ui avatar image" src="http://semantic-ui.com/images/avatar2/large/kristy.png">
+                </div>
+            </div>
         </div>
 
 

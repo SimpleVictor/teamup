@@ -3,6 +3,7 @@ import { Router, Request, Response, NextFunction } from "express";
 let requests = require('request');
 let cheerio = require('cheerio');
 
+var client = require('twilio')("AC621078e1d207d81638d8e24c9dd658c9", "c721b3668e0418a0db7e89edb11263be");
 
 const offerupRouter: Router = Router();
 
@@ -81,27 +82,27 @@ offerupRouter.get("/save", function(request: Request, response: Response, next: 
     //     }
     // });
 
-
-    requests({
-        url: `https://randomuser.me/api/?results=30&gender=female`,
-        method: "GET",
-        json: true
-    }, function(err, response2){
-        if(err){
-            console.log(err);
-            response.json("nope");
-        }else{
-            let result = response2.body.results;
-
-            let menArray = [];
-            for(let i = 0; i < 30;i++){
-                menArray.push(result[i].picture.large);
-            }
-
-            response.json(menArray);
-
-        };
-    });
+    //
+    // requests({
+    //     url: `https://randomuser.me/api/?results=30&gender=female`,
+    //     method: "GET",
+    //     json: true
+    // }, function(err, response2){
+    //     if(err){
+    //         console.log(err);
+    //         response.json("nope");
+    //     }else{
+    //         let result = response2.body.results;
+    //
+    //         let menArray = [];
+    //         for(let i = 0; i < 30;i++){
+    //             menArray.push(result[i].picture.large);
+    //         }
+    //
+    //         response.json(menArray);
+    //
+    //     };
+    // });
 
 
     //
@@ -114,8 +115,26 @@ offerupRouter.get("/save", function(request: Request, response: Response, next: 
     // });
 
 
+    client.messages.create({
+        body: "HAHAHAHAH BRUHHH",
+        to: "+19089308704",
+        from: "+19083602048"
+    }, function(err, data){
+        if(err){
+            console.log(err);
+            console.log("Could not send the message for some reason");
+            response.json("done!")
+        }else{
+            console.log("Has been contacted");
+            response.json("done!")
+        };
+    })
+
 
 });
+
+
+
 
 
 export { offerupRouter }

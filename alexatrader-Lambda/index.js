@@ -1,5 +1,6 @@
 'use strict';
 var requests = require('request');
+var client = require('twilio')("AC621078e1d207d81638d8e24c9dd658c9", "c721b3668e0418a0db7e89edb11263be");
 
 // --------------- Helpers that build all of the responses -----------------------
 
@@ -441,6 +442,50 @@ function RequestToJoinTeam(intent, session, callback){
 }
 
 function RequestToTextIndividual(intent, session, callback){
+
+    const cardTitle = intent.name;
+    let repromptText = '';
+    let sessionAttributes = {};
+    const shouldEndSession = false;
+    let speechOutput = '';
+
+    let obj = {
+        active: 1,
+        respond: "User has been contacted"
+    };
+
+    requests({
+        url: `https://alexatrader-e9921.firebaseio.com/Listener/RequestToTextIndividual.json`,
+        method: "Patch",
+        body: obj,
+        json: true
+    }, function(err, response){
+        if(err){
+            console.log("There was an error");
+            console.log(err);
+            speechOutput = "Please look at the command list if you do not know any?";
+            callback(sessionAttributes,
+                buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+        }else{
+            client.messages.create({
+                body: "HAHAHAHAH BRUHHH",
+                to: "+19089308704",
+                from: "+19083602048"
+            }, function(err, data){
+                if(err){
+                    console.log(err);
+                    speechOutput = `Could not send the message for some reason`;
+                    callback(sessionAttributes,
+                        buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+                }else{
+                    console.log("Has been contacted");
+                    speechOutput = `User has been contacted`;
+                    callback(sessionAttributes,
+                        buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+                };
+            })
+        };
+    });
 
 }
 
