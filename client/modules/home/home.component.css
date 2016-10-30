@@ -1,0 +1,11 @@
+.all.container{
+height: 100%;
+    width: 100%;
+}
+
+.login-container{
+    height:100%;
+    width: 100%;
+    background: url("assets/img/home-background.jpeg") no-repeat center;
+    background-size: cover;
+}
