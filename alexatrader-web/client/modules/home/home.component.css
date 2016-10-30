@@ -59,6 +59,18 @@
 .individual-name{
     font-size: 50px;
     color: #0190C8;
+    margin-top: 50px;
+}
+
+.details{
+    padding-right: 7px;
+    display: inline-block;
+    font-weight: bolder;
+    margin-left: 1em;
+    opacity: 1;
+    color: black;
+    border-right: 5px solid #0190C8;
+    letter-spacing: 1px;
 }
 
 .team-description {
@@ -68,7 +80,25 @@
     color: red;
 }
 
-.ui.avatar.img {
+.right.floated.content{
+    font-size: 35px;
+    letter-spacing: 5px;
+}
+
+.ui.green.ribbon.label{
+    width: 20%;
+    position: absolute;
+    z-index: 34;
+    font-size: 15px;
+}
+.ui.red.ribbon.label{
+    width: 20%;
+    position: absolute;
+    z-index: 34;
+    font-size: 15px;
+}
+
+.ui.avatar.image{
     height: 60px;
     width: 60px;
 }
@@ -84,10 +114,11 @@
     position: absolute;
     height: 150px;
     border-radius: 100%;
+    border: 5px solid #0190C8;
 }
 
 #individual-user{
-    height: 400px;
+    height: 500px;
     box-shadow: 10px 10px 1px -2px rgba(1,144,200,1);
     position: absolute;
     z-index: 5;

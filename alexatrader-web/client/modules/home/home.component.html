@@ -16,14 +16,14 @@
         <h1 class="login-message1">"Alexa, tell Team-Up to log me in as <span style="color: #0190C8">your ID #</span> "</h1>
 
 
-        <button class="ui circular facebook icon button" (click)="HelpButtonClicked()" id="help-button" style="font-family: Icon !important;opacity: 0;position: absolute; border-radius: 100%; z-index: 4;font-size: 35px;bottom: 20px; left: 20px; background-color: #0190C8">
-            <i class="list icon" style="top: 17px;right:14px"></i>
+        <button class="ui circular facebook icon button" (click)="HelpButtonClicked()" id="help-button" style="font-family: Icon !important;opacity: 0;position: absolute;z-indez: 5; border-radius: 100%; z-index: 4;font-size: 35px;bottom: 20px; left: 20px; background-color: #0190C8">
+            <i class="list icon" style="font-family: Icon !important;top: 17px;right:14px"></i>
         </button>
 
-        <img id="handIcon" src="img/tap.png" class="tap-img" style="position: absolute;    width: 3%;
+        <img id="handIcon" src="img/tap.png" class="tap-img" style="position: absolute;    width: 3%;z-index: 5;
     transform: scaleX(-1) rotate(90deg);opacity: 0;    bottom: 3%;
     left: 7%;">
-        <p id="commands" style="color:#0190C8; position: absolute; opacity: 0;bottom: 35px; left: 10%">Commands</p>
+        <p id="commands" style="color: white; position: absolute; opacity: 0;bottom: 35px; left: 12%">Commands</p>
 
 
 
@@ -51,9 +51,14 @@
         </div>
 
         <div class="users-box" style="opacity: 0">
+            <i class="fa fa-arrow-left fa-x3" aria-hidden="true" style="color: #FFF"></i>
+            <i class="fa fa-arrow-right fa-x3" aria-hidden="true" style="color: #FFF"></i>
             <div class="row">
                 <div class="col-md-2" *ngFor="let user1 of users1; let i = index">
                     <div class="ui card">
+                        <div class="ui green ribbon label">
+                            Looking for a team
+                        </div>
                         <div class="image">
                             <h2 class="numberProfile">{{i + 1}}</h2>
                             <img src="{{user1.picture}}">
@@ -78,6 +83,9 @@
             <div class="row">
                 <div class="col-md-2" *ngFor="let user2 of users2; let d = index">
                     <div class="ui card">
+                        <div class="ui red ribbon label">
+                            Needs a Team
+                        </div>
                         <div class="image">
                             <h2 class="numberProfile">{{(d + 5) + 1}}</h2>
                             <img class="profile-img" src="{{user2.picture}}">
@@ -101,12 +109,22 @@
             </div>
         </div>
 
-        <div id="individual-user" class="ui blue segment">
+        <div id="individual-user" class="ui blue segment" style="box-shadow: 7px 7px 1px -2px rgba(1,144,200,1);">
+            <div class="ui green ribbon label">
+                Looking for a team
+            </div>
             <img class="individual-img" src="{{individualUser.picture}}">
             <h2 class="individual-name">{{individualUser.first_name}} {{individualUser.last_name}}</h2>
-            <h2 class="individual-email">{{individualUser.email}}</h2>
+            <h2 class="individual-email"><div class="ui label" style="margin-right: 0;font-size: 20px;">
+
+                <div class="detail">FrontEnd</div>
+                <div class="detail">HTML5</div>
+                <div class="detail">CSS3</div>
+                <div class="detail">REACTJS</div>
+            </div></h2>
             <h2 class="team-description">Team is not full yet</h2>
-            <div class="ui middle aligned divided list">
+            <hr style="border: 2px solid #0190C7;z-index: 5;width: 80%;margin-top: 50px">
+            <div class="ui middle aligned divided list" style="top: 50%">
                 <div class="item">
                     <div class="right floated content">
                         Lena

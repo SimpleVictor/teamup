@@ -177,9 +177,13 @@ export class HomeComponent implements AfterViewInit{
         TweenMax.to(commands , 1, {opacity: 1, ease:Circ.easeIn , delay: 3});
         TweenMax.to(commands, 1, {left: '2px',repeat:'infinite', yoyo:true ,ease:Circ.easeIn});
 
+        let help_button = $("#help-button");
+        TweenMax.to(help_button , 1, {opacity: 1, ease:Circ.easeIn , delay: 3});
+
         let hand = $("#handIcon");
         TweenMax.to(hand, 1, {opacity: 1, ease:Circ.easeIn, delay:3});
         TweenMax.to(hand, 1, {left: '2px',repeat:'infinite', yoyo:true ,ease:Circ.easeIn});
+
 
 
         this.refreshSkill(skill);
@@ -197,6 +201,8 @@ export class HomeComponent implements AfterViewInit{
         let connected_message = $('.login-message1')[0];
         TweenMax.to(connected_message, 1, {opacity: 0, ease:Circ.easeOut});
 
+        let iniMessage = $(".initial-message")[0];
+        TweenMax.to(iniMessage, 1, {opacity: 0, ease:Circ.easeOut});
 
         let user_profile = $(".users-box")[0];
         TweenMax.to(user_profile, 1, {opacity: 1, ease:Circ.easeOut});
@@ -229,11 +235,12 @@ export class HomeComponent implements AfterViewInit{
 
         let UseMe;
 
-        if(numberAcc <= 5){
+        if(numberAcc <= 4){
             UseMe = this.users1[numberAcc];
         }else{
             UseMe = this.users2[numberAcc];
         }
+
 
         let user_profile = $(".users-box")[0];
         TweenMax.to(user_profile, 1, {opacity: 0, ease:Circ.easeOut});

@@ -468,7 +468,7 @@ function RequestToTextIndividual(intent, session, callback){
                 buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
         }else{
             client.messages.create({
-                body: "HAHAHAHAH BRUHHH",
+                body: "Hi my Name is Victor I would like to join your team!",
                 to: "+19089308704",
                 from: "+19083602048"
             }, function(err, data){
