@@ -3,7 +3,7 @@ import { join } from "path";
 import * as favicon from "serve-favicon";
 import { json, urlencoded } from "body-parser";
 
-import { loginRouter } from "./routes/login";
+import { craiglistRouter } from "./routes/craiglist";
 import { protectedRouter } from "./routes/protected";
 
 const app: express.Application = express();
@@ -17,7 +17,7 @@ app.use(urlencoded({ extended: true }));
 
 // api routes
 app.use("/api", protectedRouter);
-app.use("/login", loginRouter);
+app.use("/craiglist", craiglistRouter);
 
 app.use('/client', express.static(join(__dirname, '../client')));
 
