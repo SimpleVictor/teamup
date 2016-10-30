@@ -41,14 +41,13 @@
             </div>
         </div>
 
-
-
-        <div class="users-box">
+        <div class="users-box" style="opacity: 0">
             <div class="row">
-                <div class="col-md-2" *ngFor="let user1 of users1">
+                <div class="col-md-2" *ngFor="let user1 of users1; let i = index">
                     <div class="ui card">
                         <div class="image">
-                            <img src="http://semantic-ui.com/images/avatar2/large/matthew.png">
+                            <h2 class="numberProfile">{{i + 1}}</h2>
+                            <img src="{{user1.picture}}">
                         </div>
                         <div class="content">
                             <a class="header">{{user1.first_name}} {{user1.last_name}}</a>
@@ -60,8 +59,7 @@
                             </div>
                         </div>
                         <div class="extra content">
-                            <a>
-                                <i class="user icon"></i>
+                            <a style="color: red;font-size: 20px;">
                                 need team
                             </a>
                         </div>
@@ -69,10 +67,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2" *ngFor="let user2 of users2">
+                <div class="col-md-2" *ngFor="let user2 of users2; let d = index">
                     <div class="ui card">
                         <div class="image">
-                            <img src="http://semantic-ui.com/images/avatar2/large/matthew.png">
+                            <h2 class="numberProfile">{{(d + 5) + 1}}</h2>
+                            <img class="profile-img" src="{{user2.picture}}">
                         </div>
                         <div class="content">
                             <a class="header">{{user2.first_name}} {{user2.last_name}}</a>
@@ -84,8 +83,7 @@
                             </div>
                         </div>
                         <div class="extra content">
-                            <a>
-                                <i class="user icon"></i>
+                            <a style="color: red; font-size: 20px;">
                                 need team
                             </a>
                         </div>
@@ -94,6 +92,37 @@
             </div>
         </div>
 
+        <div id="individual-user" class="ui blue segment">
+            <img class="individual-img" src="{{individualUser.picture}}">
+            <h2 class="individual-name">{{individualUser.first_name}} {{individualUser.last_name}}</h2>
+            <h2 class="individual-email">{{individualUser.email}}</h2>
+        </div>
+
+
     </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

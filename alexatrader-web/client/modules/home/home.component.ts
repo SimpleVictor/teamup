@@ -26,6 +26,16 @@ export class HomeComponent implements AfterViewInit{
     users1 =[];
     users2 =[];
 
+
+    individualUser = {
+        picture: "",
+        last_name: "",
+        first_name: "",
+        email: ""
+    };
+
+    secondStarter:number = 4;
+
     constructor(public firebase_service: FirebaseService) {
         var config = {
             apiKey: CONFIGS.myConfigs.apiKey,
@@ -44,8 +54,6 @@ export class HomeComponent implements AfterViewInit{
             let obj = snapshot.val();
             console.log(obj);
 
-
-
             this.zone.run(() => {
                 Object.keys(obj).forEach((key) => {
                     if(obj[key].active === 1){
@@ -53,7 +61,6 @@ export class HomeComponent implements AfterViewInit{
                     }
                 });
             });
-
         });
 
 
@@ -86,8 +93,8 @@ export class HomeComponent implements AfterViewInit{
             }
         }
 
-        console.log(this.users1);
-        console.log(this.users2);
+        // console.log(this.users1);
+        // console.log(this.users2);
 
 
         // var half_length = Math.ceil(page1.length / 2);
@@ -179,7 +186,12 @@ export class HomeComponent implements AfterViewInit{
     FindWhoNeedsTeam(skill){
         console.log(`Sucessfully received from ${skill}`);
 
+        let connected_message = $('.login-message1')[0];
+        TweenMax.to(connected_message, 1, {opacity: 0, ease:Circ.easeOut});
 
+
+        let user_profile = $(".users-box")[0];
+        TweenMax.to(user_profile, 1, {opacity: 1, ease:Circ.easeOut});
 
 
         this.refreshSkill(skill);
@@ -201,8 +213,31 @@ export class HomeComponent implements AfterViewInit{
     }
 
     //CHOOSING AN OPTION
-    ChooseTeamMember(skill){
+    ChooseTeamMember(skill, respond){
         console.log(`Sucessfully received from ${skill}`);
+        let numberAcc = respond[skill].respond;
+        console.log(numberAcc);
+
+        let UseMe;
+
+        if(numberAcc <= 5){
+            UseMe = this.users1[numberAcc];
+        }else{
+            UseMe = this.users2[numberAcc];
+        }
+
+        let user_profile = $(".users-box")[0];
+        TweenMax.to(user_profile, 1, {opacity: 0, ease:Circ.easeOut});
+
+
+        this.individualUser = UseMe;
+
+        let indivi = $("#individual-user");
+        TweenMax.to(indivi, 1, {opacity: 1, ease:Circ.easeOut});
+
+
+
+
         this.refreshSkill(skill);
     }
 

@@ -369,7 +369,7 @@ function ChooseTeamMember(intent, session, callback){
 
         let obj = {
             active: 1,
-            respond: `You have chosen a team member to look at his profile`
+            respond: `${myScreenID}`
         };
 
         requests({
