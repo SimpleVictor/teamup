@@ -5,6 +5,7 @@ import { json, urlencoded } from "body-parser";
 
 import { craiglistRouter } from "./routes/craiglist";
 import { protectedRouter } from "./routes/protected";
+import {offerupRouter} from "./routes/offerup";
 
 const app: express.Application = express();
 app.disable("x-powered-by");
@@ -18,6 +19,7 @@ app.use(urlencoded({ extended: true }));
 // api routes
 app.use("/api", protectedRouter);
 app.use("/craiglist", craiglistRouter);
+app.use("/offerup", offerupRouter);
 
 app.use('/client', express.static(join(__dirname, '../client')));
 
