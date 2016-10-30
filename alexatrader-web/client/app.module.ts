@@ -8,6 +8,7 @@ import { AppComponent }  from './app.component';
 import { routing } from "./routes";
 
 import { HomeModule } from "./modules/home/home.module";
+import {FirebaseService} from "./providers/firebase-service";
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { HomeModule } from "./modules/home/home.module";
         routing
     ],
     providers: [
+        FirebaseService
     ],
     declarations: [ AppComponent ],
     bootstrap:    [ AppComponent ],
