@@ -4,5 +4,6 @@ typings
 server/**/*.js
 server/**/*.js.map
 client/**/*.js
+client/myconfig.ts
 client/**/*.js.map
 /npm-debug.log

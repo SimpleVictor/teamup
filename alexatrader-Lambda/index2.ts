@@ -62,7 +62,7 @@ function getWelcomeResponse(callback) {
     // If we wanted to initialize the session to have some attributes we could add those here.
     const sessionAttributes = {};
     const cardTitle = 'Welcome';
-    const speechOutput = 'What is up player player.';
+    const speechOutput = 'Thank for using trade please repeat the message displayed on the screen.';
     // If the user either does not reply to the welcome message or says something that is not
     // understood, they will be prompted again with this text.
     const repromptText = 'Are you going to tell me your unique ID or not?';
@@ -90,7 +90,7 @@ function createFavoriteColorAttributes(favoriteColor) {
 /**
  * Sets the color in the session and prepares the speech to reply to the user.
  */
-function SetUpNumber(intent, session, callback) {
+function SetupNumber(intent, session, callback) {
     const cardTitle = intent.name;
     const myUniqueNumber = intent.slots.UniqueNumber;
     let repromptText = '';
@@ -102,7 +102,7 @@ function SetUpNumber(intent, session, callback) {
         const UniqueNumber = myUniqueNumber.value;
 
         requests({
-            url: `https://alexaux-39a68.firebaseio.com/${UniqueNumber}.json`,
+            url: `https://alexatrader-e9921.firebaseio.com/${UniqueNumber}.json`,
             method: "GET",
             json: true
         }, function(err, response){
@@ -121,7 +121,7 @@ function SetUpNumber(intent, session, callback) {
                 };
 
                 requests({
-                    url: `https://alexaux-39a68.firebaseio.com/Listener/SetupNumbers/.json`,
+                    url: `https://alexatrader-e9921.firebaseio.com/Listener/SetupNumber/.json`,
                     method: "Patch",
                     body: obj,
                     json: true
@@ -133,9 +133,9 @@ function SetUpNumber(intent, session, callback) {
                        callback(sessionAttributes,
                            BuildAudioSpeech(cardTitle, speechOutput, repromptText, shouldEndSession));
                    }else{
-                       speechOutput = `<speak><audio src='https://s3.amazonaws.com/videos564123/khaled/loyal1.mp3'/></speak>`;
+                       speechOutput = `You are now connected`;
                        callback(sessionAttributes,
-                           BuildAudioSpeech(cardTitle, speechOutput, repromptText, shouldEndSession));
+                           buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
                    }
                 });
 
@@ -177,9 +177,9 @@ function RemoveGrid(intent, session, callback){
                 buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
         }else{
             console.log("Successfully added into db");
-            speechOutput = `<speak><audio src='https://s3.amazonaws.com/videos564123/khaled/anotherone1.mp3'/></speak>`;
+            speechOutput = `You are now connected`;
             callback(sessionAttributes,
-                BuildAudioSpeech(cardTitle, speechOutput, repromptText, shouldEndSession));
+                buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
         };
     });
 }
@@ -213,8 +213,8 @@ function onIntent(intentRequest, session, callback) {
     const intentName = intentRequest.intent.name;
 
     // Dispatch to your skill's intent handlers
-    if (intentName === 'SetUpNumber') {
-        SetUpNumber(intent, session, callback);
+    if (intentName === 'SetupNumber') {
+        SetupNumber(intent, session, callback);
     }else if (intentName === 'AMAZON.HelpIntent') {
         getWelcomeResponse(callback);
     } else if (intentName === 'AMAZON.StopIntent' || intentName === 'AMAZON.CancelIntent') {
