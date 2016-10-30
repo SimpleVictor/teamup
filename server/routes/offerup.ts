@@ -11,25 +11,9 @@ let url = "https://offerupnow.com/search";
 
 offerupRouter.post("/search", function (request: Request, response: Response, next: NextFunction) {
 
+    let searchQuery = request.body.searchQuery;
 
-
-
-});
-
-offerupRouter.post("/retreive", function (request: Request, response: Response, next: NextFunction) {
-
-
-});
-
-
-offerupRouter.get("/save", function(request: Request, response: Response, next: NextFunction){
-
-    console.log(cheerio);
-
-
-
-
-    let pageToVisit = `${url}/?q=monitors`;
+    let pageToVisit = `${url}/?q=${searchQuery}`;
     console.log(pageToVisit);
 
     requests(pageToVisit, (error, res, body) => {
@@ -41,16 +25,39 @@ offerupRouter.get("/save", function(request: Request, response: Response, next: 
         //Check status code(200 is HTTP ok)
         console.log("Status code: " + res.statusCode);
         if (res.statusCode === 200) {
-            //Parse the document body
             var $ = cheerio.load(body);
-            //Log out the title name(testing if cheerio works)
-            console.log("made it");
-            console.log("Page title: " + $('title').text());
-            response.json("works");
 
+            let fullList = $(".item_listing_id");
+            let finalObj = [];
+
+            for(let i = 0; i < fullList.length; i++){
+                let currentObj = {
+                    id: fullList[i].attribs.value,
+                    href: $(".item-container > .item-pic > a")[2].attribs.href,
+                    title: $(".item-container > .item-pic > a")[2].attribs.title,
+                    picture_url: $(".item-container > .item-pic > a > img")[2].attribs.src,                       price: ($(".item-container > .item-info > .item-info-price")[2].children[0].data).trim(),
+                    distance_from_location: ($(".item-container > .item-info > .item-info-distance")[2].children[2].data).trim()
+                }
+                finalObj.push(currentObj);
+            }
+
+            // console.log(finalObj);
+
+            response.json(finalObj);
         }
-
     });
+
+});
+
+offerupRouter.post("/retreive", function (request: Request, response: Response, next: NextFunction) {
+
+
+});
+
+
+offerupRouter.get("/save", function(request: Request, response: Response, next: NextFunction){
+
+
 
 
 });
