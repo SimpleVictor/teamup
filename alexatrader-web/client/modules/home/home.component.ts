@@ -3,6 +3,7 @@ import * as CONFIGS from "../../myconfig";
 import {FirebaseService} from "../../providers/firebase-service";
 
 declare var firebase;
+declare var $;
 
 @Component({
     selector: "home",
@@ -61,7 +62,14 @@ export class HomeComponent {
 
     SetupNumber(skill){
         console.log(`Sucessfully received from ${skill}`);
+
+        let robot_circle = $('.torso:before');
+        console.log(robot_circle);
+
         this.refreshSkill(skill);
     }
+
+
+
 
 }
