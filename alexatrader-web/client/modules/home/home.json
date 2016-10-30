@@ -1,0 +1,72 @@
+{
+  "123456" : "hey",
+  "Listener" : {
+    "SetupNumber" : {
+      "active" : 0,
+      "respond" : "123456"
+    },
+    "ChooseTeamMember" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "FindDescriptionProject" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "FindIndividualName" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "FindSpecificTeam" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "FindWhoNeedsTeam" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "FindWithSkill" :  {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "GoBackACommand" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "GoToMainMenu" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "LookUpHisTeamMate" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "RequestToJoinTeam" : {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "RequestToTextIndividual" :  {
+      "active" : 0,
+      "respond" : "null"
+    },
+    "RequestToTextTeamParty" : {
+      "active" : 0,
+      "respond" : "null"
+    }
+  },
+  "showme" : {
+    "ChooseTeamMember" : 0,
+    "FindDescriptionProject" : 0,
+    "FindIndividualName" : 0,
+    "FindSpecificTeam" : 0,
+    "FindWhoNeedsTeam" : 0,
+    "FindWithSkill" : 0,
+    "GoBackACommand" : 0,
+    "GoToMainMenu" : 0,
+    "LookUpHisTeamMate" : 0,
+    "RequestToJoinTeam" : 0,
+    "RequestToTextIndividual" : 0,
+    "RequestToTextTeamParty" : 0,
+    "SetupNumber" : 1
+  }
+}
