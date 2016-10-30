@@ -1,4 +1,4 @@
-import {Component, NgZone} from "@angular/core";
+import {Component, NgZone, AfterViewInit} from "@angular/core";
 import * as CONFIGS from "../../myconfig";
 import {FirebaseService} from "../../providers/firebase-service";
 import {myJSON} from "../../json/team";
@@ -19,7 +19,7 @@ declare var TimelineLite;
     styleUrls: [`client/modules/home/home.component.css`],
     templateUrl: `client/modules/home/home.component.html`
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit{
 
     zone;
 
@@ -56,6 +56,11 @@ export class HomeComponent {
 
     }
 
+    ngAfterViewInit(){
+
+
+    }
+
 
     refreshSkill(skill){
         this.firebase_service.Refresh_ActiveSkill(skill).subscribe(
@@ -67,11 +72,29 @@ export class HomeComponent {
         );
     }
 
+    SetUpMainPage(){
+        console.log("Yesh");
+    }
+
     SetupNumber(skill){
         console.log(`Sucessfully received from ${skill}`);
 
+
+        let MessageComplete = (message, callback) => {
+            connected_message[0].innerHTML = `You are now <span style='color: #46C92D'>connected</span>`;
+            TweenMax.to(message, 1, {opacity: 1, left: '40%', ease:Circ.easeOut});
+            setTimeout(() => {
+                callback();
+            }, 2000);
+        };
+
         let robot_circle = $('.torso:before');
         console.log(robot_circle);
+
+        let connected_message = $('.login-message1');
+
+        TweenMax.to(connected_message, 1, {opacity: 0, ease:Circ.easeOut, onComplete: MessageComplete, onCompleteParams:[connected_message, this.SetUpMainPage]});
+
 
         this.refreshSkill(skill);
     }

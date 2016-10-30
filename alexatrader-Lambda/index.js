@@ -239,7 +239,45 @@ function FindWhoNeedsTeam(intent, session, callback){
 }
 
 function FindIndividualName(intent, session, callback){
+    const cardTitle = intent.name;
+    const UserName = intent.slots.UserName;
+    let repromptText = '';
+    let sessionAttributes = {};
+    const shouldEndSession = true;
+    let speechOutput = '';
 
+    if (UserName) {
+        const myUserName = UserName.value;
+
+        let obj = {
+            active: 1,
+            respond: `Looking at ${myUserName}`
+        };
+
+        requests({
+            url: `https://alexatrader-e9921.firebaseio.com/Listener/FindIndividualName.json`,
+            method: "Patch",
+            body: obj,
+            json: true
+        }, function(err, response){
+            if(err){
+                console.log("There was an error");
+                console.log(err);
+                speechOutput = "There was a problem with the database when trying to find with skill";
+                callback(sessionAttributes,
+                    buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+            }else{
+                speechOutput = `Here is the team you have requested`;
+                callback(sessionAttributes,
+                    buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+            };
+        });
+
+    } else {
+        speechOutput = "Please look at the command list if you do not know any?";
+        callback(sessionAttributes,
+            buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+    }
 }
 
 function FindDescriptionProject(intent, session, callback){
