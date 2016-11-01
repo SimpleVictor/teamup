@@ -1,0 +1,21 @@
+.home-page {
+
+  *{
+    font-family: 'Chewy', cursive !important;
+  }
+
+  .robot{
+    position:absolute;
+    left:35%;
+    top:45%
+  }
+
+}
+
+#the-ion-title{
+  color: $main-color !important;
+}
+
+ion-card-content{
+  text-align: center;
+}

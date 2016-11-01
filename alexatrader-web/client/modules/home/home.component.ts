@@ -23,9 +23,14 @@ export class HomeComponent implements AfterViewInit{
 
     zone;
 
+    page1;
+    page2;
+    page3;
+
     users1 =[];
     users2 =[];
 
+    currentPage;
 
     individualUser = {
         picture: "",
@@ -70,26 +75,28 @@ export class HomeComponent implements AfterViewInit{
         let myData = JSON.parse(myJSON);
         console.log(myData);
 
-        let page1 = [];
-        let page2 = [];
-        let page3 = [];
+        this.currentPage = 1;
+
+        this.page1 = [];
+        this.page2 = [];
+        this.page3 = [];
 
 
         for(let i = 0; i < myData.length; i++){
             if(i <= 9){
-                page1.push(myData[i]);
+                this.page1.push(myData[i]);
             }else if(i >= 10 && i <= 19){
-                page2.push(myData[i]);
+                this.page2.push(myData[i]);
             }else{
-                page3.push(myData[i]);
+                this.page3.push(myData[i]);
             }
         }
 
-        for(let i = 0; i < page1.length; i++){
+        for(let i = 0; i < this.page1.length; i++){
             if(i <= 4){
-                this.users1.push(page1[i]);
+                this.users1.push(this.page1[i]);
             }else{
-                this.users2.push(page2[i]);
+                this.users2.push(this.page1[i]);
             }
         }
 
@@ -236,9 +243,9 @@ export class HomeComponent implements AfterViewInit{
         let UseMe;
 
         if(numberAcc <= 4){
-            UseMe = this.users1[numberAcc];
+            UseMe = this.users1[numberAcc -1];
         }else{
-            UseMe = this.users2[numberAcc];
+            UseMe = this.users2[numberAcc -1];
         }
 
 
@@ -276,6 +283,45 @@ export class HomeComponent implements AfterViewInit{
 
     RequestToTextIndividual(skill){
         console.log(`Sucessfully received from ${skill}`);
+
+        let textMsg = $(".text-message")[0];
+        TweenMax.to(textMsg, 1, {opacity: 1, ease:Circ.easeOut});
+
+        this.refreshSkill(skill);
+    }
+
+    GoToNextProfilePage(skill){
+        console.log(`Sucessfully received from ${skill}`);
+
+        this.currentPage += 1;
+
+        // let user_profile = $(".users-box")[0];
+        // TweenMax.to(user_profile, 1, {opacity: 0, ease:Circ.easeOut});
+
+        this.users1 = [];
+        this.users2 = [];
+
+        if(this.currentPage === 2){
+            for(let i = 0; i < this.page2.length; i++){
+                if(i <= 4){
+                    this.users1.push(this.page2[i]);
+                }else{
+                    this.users2.push(this.page2[i]);
+                }
+            }
+        }
+        if(this.currentPage === 3){
+            for(let i = 0; i < this.page3.length; i++){
+                if(i <= 4){
+                    this.users1.push(this.page3[i]);
+                }else{
+                    this.users2.push(this.page3[i]);
+                }
+            }
+        }
+
+        // TweenMax.to(user_profile, 1, {opacity: 1, ease:Circ.easeOut, delay: 2500});
+
         this.refreshSkill(skill);
     }
 

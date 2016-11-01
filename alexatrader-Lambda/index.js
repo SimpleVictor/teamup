@@ -468,7 +468,7 @@ function RequestToTextIndividual(intent, session, callback){
                 buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
         }else{
             client.messages.create({
-                body: "HAHAHAHAH BRUHHH",
+                body: "Hi my Name is Victor I would like to join your team!",
                 to: "+19089308704",
                 from: "+19083602048"
             }, function(err, data){
@@ -515,6 +515,38 @@ function GoToMainMenu(intent, session, callback){
                 buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
         }else{
             speechOutput = `Going back to the main menu now`;
+            callback(sessionAttributes,
+                buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+        };
+    });
+}
+
+function GoToNextProfilePage(intent, session, callback){
+    const cardTitle = intent.name;
+    let repromptText = '';
+    let sessionAttributes = {};
+    const shouldEndSession = false;
+    let speechOutput = '';
+
+    let obj = {
+        active: 1,
+        respond: "query next 10 people"
+    };
+    requests({
+
+        url: `https://alexatrader-e9921.firebaseio.com/Listener/GoToNextProfilePage.json`,
+        method: "Patch",
+        body: obj,
+        json: true
+    }, function(err, response){
+        if(err){
+            console.log("There was an error");
+            console.log(err);
+            speechOutput = "Please look at the command list if you do not know any?";
+            callback(sessionAttributes,
+                buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+        }else{
+            speechOutput = `Going to the next page now`;
             callback(sessionAttributes,
                 buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
         };
@@ -668,6 +700,13 @@ function onIntent(intentRequest, session, callback) {
     }else if(intentName === 'GoBackACommand'){ //Alexa, tell team up to go back
         GoBackACommand(intent, session, callback);
     }
+
+
+    else if(intentName === 'GoToNextProfilePage'){ //Alexa, tell team up to go back
+        GoToNextProfilePage(intent, session, callback);
+    }
+
+
     //DEFAULT COMMANDS FROM ALEXA
     else if (intentName === 'AMAZON.HelpIntent') {
         getWelcomeResponse(callback);
